@@ -30,15 +30,24 @@
     var delay = 100
     // create asynchronous loading of elements
     setTimeout(() => {
-      document.querySelector('#first').innerHTML = '<div id="second"></div>'
-
-      setTimeout(() => {
-        document.querySelector('#second').innerHTML = '<div id="third"></div>'
-
+        document.querySelector('#first').innerHTML = '<div id="second"></div>'
         setTimeout(() => {
-          document.querySelector('#third').innerHTML = 'foobar'
+            document.querySelector('#second').innerHTML = '<div id="third"></div>'
+            setTimeout(() => {
+                document.querySelector('#third').innerHTML = '<div id="fourth"></div>'
+                setTimeout(() => {
+                    document.querySelector('#fourth').innerHTML = '<div id="fifth"></div>'
+                    setTimeout(() => {
+                        document.querySelector('#second').remove();
+                        document.querySelector('#first').innerHTML = '<div id="second"></div>'
+                        document.querySelector('#second').innerHTML = '<div id="third"></div>'
+                        document.querySelector('#third').innerHTML = '<div id="fourth"></div>'
+                        document.querySelector('#fourth').innerHTML = '<div id="fifth"></div>'
+                        document.querySelector('#fifth').innerHTML = 'foobar'
+                    }, delay)
+                }, delay)
+            }, delay)
         }, delay)
-      }, delay)
     }, delay)
 
     document.querySelector('#remove').addEventListener('click', () => {

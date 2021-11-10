@@ -161,6 +161,9 @@ describe('pipe()', () => {
       const getFirst = $el => $el.find('#first')
       /** @param $el {JQuery} */
       const getSecond = $el => $el.find('#second')
+      const getThird = $el => $el.find('#third')
+      const getFourth = $el => $el.find('#fourth')
+      const getFifth = $el => $el.find('#fifth')
       /** @param $el {JQuery} */
       const getText = $el => $el.text()
 
@@ -202,10 +205,13 @@ describe('pipe()', () => {
           })
       })
 
-      it('should wait to continue for each step and resolve the chain with the correct value', () => {
+      it.only('should wait to continue for each step and resolve the chain with the correct value', () => {
         cy.get('body')
           .pipe(getFirst)
           .pipe(getSecond) // Will resolve after a delay
+          .pipe(getThird) // Will resolve after a delay
+          .pipe(getFourth) // Will resolve after a delay
+          .pipe(getFifth) // Will resolve after a delay
           .pipe(getText)
           .should('equal', 'foobar')
       })
